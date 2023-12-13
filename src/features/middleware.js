@@ -1,0 +1,26 @@
+export const logger = store => next => action => {
+    if (typeof action === 'function') {
+        action(store.dispatch, store.getState)
+    } else { 
+        // console.log('dispatch', store.getState())
+        next(action)
+        // console.log('after dispatch', store.getState())
+    }
+}
+
+// export const logger = store => next => action => {
+//     console.log('dispatch', store.getState())
+//     next(action)
+//     console.log('after dispatch', store.getState())
+// }
+
+// import { configureStore } from '@reduxjs/toolkit'
+// import { dataReducer } from './features/dataSlice'
+// import { logger } from './features/middleware'
+
+// export const store = configureStore({
+//     reducer: {
+//         data: dataReducer
+//     },
+//     middleware: [ logger ]
+// })
